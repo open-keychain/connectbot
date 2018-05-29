@@ -455,7 +455,7 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 						bridge.charHeight);
 
 				int metaState = bridge.getKeyHandler().getMetaState();
-				if (y + bridge.charHeight < bridge.bitmap.getHeight()) {
+				if (y + bridge.charHeight < bridge.bitmap.getHeight() && x + bridge.charWidth * (onWideCharacter ? 2 : 1) < bridge.bitmap.getWidth()) {
 					Bitmap underCursor = Bitmap.createBitmap(bridge.bitmap, x, y,
 							bridge.charWidth * (onWideCharacter ? 2 : 1), bridge.charHeight);
 					if (metaState == 0)
