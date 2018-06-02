@@ -144,7 +144,6 @@ android {
         // source and licensed under Apache 2.
         oss {
             dimension "license"
-            versionNameSuffix "-oss"
             ndk {
                 abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
             }
