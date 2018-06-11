@@ -390,6 +390,7 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 		scaleCursors();
 	}
 
+	@Override
 	public void onFontSizeChanged(final float size) {
 		scaleCursors();
 
@@ -600,6 +601,7 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 	}
 
 	private class AccessibilityEventSender implements Runnable {
+		@Override
 		public void run() {
 			synchronized (mAccessibilityLock) {
 				if (mCodeMatcher == null) {

@@ -39,8 +39,9 @@ public class HelpActivity extends AppCompatActivity {
 		super.onCreate(icicle);
 		setContentView(R.layout.act_help);
 
-		Button hintsButton = (Button) findViewById(R.id.hints_button);
+		Button hintsButton = findViewById(R.id.hints_button);
 		hintsButton.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(HelpActivity.this, HintsActivity.class);
 				HelpActivity.this.startActivity(intent);
@@ -48,8 +49,9 @@ public class HelpActivity extends AppCompatActivity {
 		});
 
 		inflater = LayoutInflater.from(this);
-		Button shortcutsButton = (Button) findViewById(R.id.shortcuts_button);
+		Button shortcutsButton = findViewById(R.id.shortcuts_button);
 		shortcutsButton.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				@SuppressLint("InflateParams")  // Dialogs do not have a parent view.
 				final View shortcuts = inflater.inflate(R.layout.dia_keyboard_shortcuts,
@@ -63,8 +65,9 @@ public class HelpActivity extends AppCompatActivity {
 			}
 		});
 
-		Button eulaButton = (Button) findViewById(R.id.eula_button);
+		Button eulaButton = findViewById(R.id.eula_button);
 		eulaButton.setOnClickListener(new OnClickListener() {
+			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(HelpActivity.this, EulaActivity.class);
 				HelpActivity.this.startActivity(intent);

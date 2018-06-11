@@ -17,16 +17,17 @@ buildscript {
 }
 
 plugins {
+    id 'com.github.ben-manes.versions' version '0.17.0'
     id 'info.vividcode.android.sdk-manager' version '0.9.0'
+    id 'net.ltgt.errorprone' version '0.0.14'
 }
 
 ext {
-    supportLibraryVersion = '27.0.2'
+    supportLibraryVersion = '27.1.1'
     testRunnerVersion = '1.0.2'
     espressoVersion = '3.0.2'
 }
 
-apply plugin: 'info.vividcode.android.sdk-manager'
 apply plugin: 'com.android.application'
 apply plugin: 'com.github.kt3k.coveralls'
 apply plugin: 'com.github.gfx.ribbonizer'
@@ -176,7 +177,9 @@ android {
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
         exclude 'LICENSE.txt'
+        exclude '**/*.gwt.xml'
     }
+
     externalNativeBuild {
         cmake {
             path 'CMakeLists.txt'
@@ -184,16 +187,29 @@ android {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs += [
+            '-Xep:ClassCanBeStatic:OFF',
+            '-Xep:ClassNewInstance:OFF',
+            '-Xep:DefaultCharset:OFF',
+            '-Xep:SynchronizeOnNonFinalField:OFF',
+            '-XepExcludedPaths:' +
+                    '.*/app/src/main/java/de/mud/.*|' +
+                    '.*/app/src/main/java/org/apache/.*|' +
+                    '.*/app/src/main/java/org/keyczar/.*',
+    ]
+}
+
 // Dependencies must be below the android block to allow productFlavor specific deps.
 dependencies {
     implementation project(':sshlib')
     implementation 'org.sufficientlysecure:sshauthentication-api:1.0'
-    googleImplementation 'com.google.android.gms:play-services-base:11.8.0'
+    googleImplementation 'com.google.android.gms:play-services-base:15.0.1'
     ossImplementation 'org.conscrypt:conscrypt-android:1.1.2'
 
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.13.0'
-    testImplementation 'org.assertj:assertj-core:3.9.0'
+    testImplementation 'org.mockito:mockito-core:2.18.3'
+    testImplementation 'org.assertj:assertj-core:3.10.0'
     testImplementation('org.robolectric:robolectric:3.6.1') {
         exclude group: 'commons-logging', module: 'commons-logging'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
@@ -209,6 +225,6 @@ def getGitDescription = { ->
         }
         return stdout.toString().trim()
     } catch (ignored) {
-        return null;
+        return null
     }
 }
