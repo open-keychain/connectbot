@@ -77,7 +77,7 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:paddingTop="10dip"
-			android:text="ConnectBot (working version)"
+			android:text="TermBot"
 			android:textAppearance="?android:attr/textAppearanceSmall"
 			tools:ignore="HardcodedText"
 			/>

@@ -228,7 +228,7 @@
   <string name="no">No</string>
   <string name="yes">Yes</string>
   <string name="menu_colors_reset">Reset</string>
-  <string name="app_is_running">ConnectBot is running</string>
+  <string name="app_is_running">TermBot is running</string>
   <string name="color_red">red</string>
   <string name="color_green">green</string>
   <string name="color_blue">blue</string>
