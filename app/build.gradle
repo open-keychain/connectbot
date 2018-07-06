@@ -214,40 +214,42 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:3.6.1'
 }
 
-task getGitDescription {
-    // Make sure the git clone is not shallow so git describe works.
-    def dummyOutputStream = new OutputStream() {
-        @Override
-        public void write(int b) {}
-    }
-    exec {
-        executable 'git'
-        args 'fetch', '--unshallow'
-        standardOutput = dummyOutputStream
-        errorOutput = dummyOutputStream
-        ignoreExitValue true
-    }
+// disable appending git description
+// task getGitDescription {
+//     // Make sure the git clone is not shallow so git describe works.
+//     def dummyOutputStream = new OutputStream() {
+//         @Override
+//         public void write(int b) {}
+//     }
+//     exec {
+//         executable 'git'
+//         args 'fetch', '--unshallow'
+//         standardOutput = dummyOutputStream
+//         errorOutput = dummyOutputStream
+//         ignoreExitValue true
+//     }
 
-    new ByteArrayOutputStream().withStream { os ->
-        exec {
-            executable 'git'
-            args 'describe', '--dirty'
-            standardOutput = os
-        }
+//     new ByteArrayOutputStream().withStream { os ->
+//         exec {
+//             executable 'git'
+//             args 'describe', '--dirty'
+//             standardOutput = os
+//         }
 
-        // Versions will be in the form vX.Y.Z-NNN-gABCDEFG, so trim off the leading
-        // 'v' to make it compliant with Semantic Versioning.
-        def trimmedVersion = os.toString().trim()
-        if (trimmedVersion.charAt(0) == 'v') {
-            trimmedVersion = trimmedVersion.substring(1)
-        }
+//         // Versions will be in the form vX.Y.Z-NNN-gABCDEFG, so trim off the leading
+//         // 'v' to make it compliant with Semantic Versioning.
+//         def trimmedVersion = os.toString().trim()
+//         if (trimmedVersion.charAt(0) == 'v') {
+//             trimmedVersion = trimmedVersion.substring(1)
+//         }
 
-        project.ext.gitDescription = trimmedVersion
-    }
-}
+//         project.ext.gitDescription = trimmedVersion
+//     }
+// }
 
-task updateAndroidVersion {
-    dependsOn getGitDescription
-    android.defaultConfig.versionName "$gitDescription"
-}
-preBuild.dependsOn(updateAndroidVersion)
+// task updateAndroidVersion {
+//     dependsOn getGitDescription
+//     android.defaultConfig.versionName "$gitDescription"
+// }
+
+// preBuild.dependsOn(updateAndroidVersion)
