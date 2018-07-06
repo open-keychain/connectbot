@@ -34,7 +34,7 @@ public class Version {
 			PackageInfo pi = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
 			textView.setText(pi.versionName);
 		} catch (PackageManager.NameNotFoundException e) {
-			Log.i(TAG, "Couldn't get my own package info for some reason");
+			Log.i(TAG, "Couldn't get own package info: ", e);
 		}
 	}
 }
