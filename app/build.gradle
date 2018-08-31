@@ -63,8 +63,8 @@ android {
 
     defaultConfig {
         applicationId "org.sufficientlysecure.termbot"
-        versionName "1.9.2-termbot.4"
-        versionCode 19204
+        versionName "1.9.2-termbot.5"
+        versionCode 19205
 
         minSdkVersion 19
         targetSdkVersion 27
