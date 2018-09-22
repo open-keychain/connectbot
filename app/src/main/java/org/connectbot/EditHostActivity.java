@@ -44,6 +44,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 public class EditHostActivity extends AppCompatActivity implements HostEditorFragment.Listener {
 
@@ -74,6 +75,8 @@ public class EditHostActivity extends AppCompatActivity implements HostEditorFra
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 		mHostDb = HostDatabase.get(this);
 		mPubkeyDb = PubkeyDatabase.get(this);
