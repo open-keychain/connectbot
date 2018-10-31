@@ -184,7 +184,7 @@ tasks.withType(JavaCompile) {
 dependencies {
     implementation project(':sshlib')
     implementation 'org.sufficientlysecure:sshauthentication-api:1.0'
-    googleImplementation 'com.google.android.gms:play-services-base:15.0.1'
+    googleImplementation 'com.google.android.gms:play-services-base:16.0.1'
     ossImplementation 'org.conscrypt:conscrypt-android:1.4.0'
 
     implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
