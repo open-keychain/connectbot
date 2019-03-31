@@ -80,7 +80,7 @@ public abstract class ConnectionNotifier {
 	@TargetApi(Build.VERSION_CODES.O)
 	private void createNotificationChannel(Context context, String id) {
 		nc = new NotificationChannel(id, context.getString(R.string.app_name),
-				NotificationManager.IMPORTANCE_DEFAULT);
+				NotificationManager.IMPORTANCE_LOW);
 		getNotificationManager(context).createNotificationChannel(nc);
 	}
 
