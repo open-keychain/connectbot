@@ -1,4 +1,4 @@
 [submodule "sshlib"]
 	path = sshlib
 	url = https://github.com/open-keychain/sshlib
-	branch = agent_support_plus
+	branch = master
